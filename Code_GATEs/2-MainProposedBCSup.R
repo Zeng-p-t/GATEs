@@ -20,13 +20,6 @@ TrueTau <- list(true.tau1, true.tau2, true.tau3,
                 true.tau4, true.tau5, true.tau6,
                 true.tau7, true.tau8, true.tau9)
 
-# ------------------------------------------- #
-# case C1: c0 = 0.6 * n^(-1/5)
-# case C2: c0 = 0.65 * n^(-1/5)
-# case C3: c0 = 0.5 * n^(-1/5)
-# 重复跑100次模拟, 平均窗宽约为c0 * n^(-1/5)
-# 最后我们统一使用c0 = 0.6
-# ------------------------------------------- #
 
 set.seed(12)
 for(ss in 1:9){
@@ -145,8 +138,8 @@ for(ss in 1:9){
     i <- i + 1
   }
   save(PARA, file = paste0('res_proposed/PARA_ss',ss, '_n=',n,'_bc.Rdata'))
-  #save(ESE, file = paste0('result/PARA_ss',ss, '_n=',n,'_c=',c0,'_match.Rdata'))
-  #save(COUNT95, file = paste0('result/PARA_ss',ss, '_n=',n,'_c=',c0,'_match.Rdata'))
+  save(ESE, file = paste0('result/PARA_ss',ss, '_n=',n,'_c=',c0,'_match.Rdata'))
+  save(COUNT95, file = paste0('result/PARA_ss',ss, '_n=',n,'_c=',c0,'_match.Rdata'))
 
   # report some results for z = -0.4, -0.2, 0.0, 0.2, 0.4
   RES <- data.frame(matrix(nrow = 5, ncol = 5))
