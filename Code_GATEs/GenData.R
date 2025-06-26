@@ -245,6 +245,11 @@ gen.dat9 <- function(n){
   return(dat)
 }
 
+
+
+# -------------  Cases (10) - (12)  -------------------
+# the true propensity scores can take values very close to 0.
+
 gen.dat10 <- function(n){
   
   # X = (X1, X2, X3)
