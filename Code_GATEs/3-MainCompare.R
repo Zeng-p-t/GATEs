@@ -22,13 +22,6 @@ TrueMu1 <- list(true.tau1, true.tau2, true.tau3,
                 true.tau7, true.tau8, true.tau9,
                 true.tau10, true.tau11, true.tau12)
 
-# ------------------------------------------- #
-# case C1: c0 = 0.6 * n^(-1/5)
-# case C2: c0 = 0.65 * n^(-1/5)
-# case C3: c0 = 0.5 * n^(-1/5)
-# 重复跑100次模拟, 平均窗宽约为c0 * n^(-1/5)
-# 最后我们统一使用c0 = 0.6
-# ------------------------------------------- #
 
 set.seed(12)
 for(ss in 1:12){
@@ -130,10 +123,7 @@ for(ss in 1:12){
   save(PARA.aipw, file = paste0('result/PARA_ss',ss, '_n=',n,'_aipw.Rdata'))
   save(PARA.psr, file = paste0('result/PARA_ss',ss, '_n=',n,'_psr.Rdata'))
 
-  # report some results for z = -0.4, -0.2, 0.0, 0.2, 0.4
-  # RES <- data.frame(matrix(nrow = 5, ncol = 2*1+1))
-  # names(RES) <- c('z', 'psr.bias', 'sd')
-  
+  # report some results for z = -0.4, -0.2, 0.0, 0.2, 0.4 
   RES <- data.frame(matrix(nrow = 5, ncol = 2*6+1))
   names(RES) <- c('z', 'match.bias','sd', 'match.bc.bias', 'sd',
                     'ipw.bias', 'sd', 'or.bias', 'sd',
@@ -159,71 +149,4 @@ for(ss in 1:12){
 
 
 }
-
-
-
-
-
-# plot the results
-# ----------- c0 = 0.6 -------------
-
-# par(mfrow = c(1,3))
-# index <- 3:98
-#
-# load('result/Continuous_PARA_ss1_n=2000_c=0.6_proposed.Rdata')
-# true.tau <- true_tau1(Zeval)       # true value of tau(z)
-#
-# plot(Zeval, true.tau, ylim = c(-0.4, 1.0),
-#      type = 'l', col = 'black', lwd = 2,
-#      xlab = 'Z', ylab = 'Value of CATE',
-#      main = 'proposed, (C1)')
-# est.tau <- apply(PARA, 2, mean, na.rm = T)
-# up <- apply(PARA, 2, quantile, prob = 0.975, na.rm = T)
-# low <- apply(PARA, 2, quantile, prob = 0.025, na.rm = T)
-# lines(Zeval, est.tau, col = 'red', lwd = 2)
-# lines(Zeval[index], up[index], col = 'blue', lty = 2, lwd = 2)
-# lines(Zeval[index], low[index], col = 'blue', lty = 2, lwd = 2)
-# legend('topright',
-#        legend = c('true value', 'estimate', '95% CI'),
-#        lty = c(1, 1, 2), col = c('black','red','blue'),
-#        lwd = c(2,2, 2), cex = 0.9)
-#
-#
-#
-# load('result/Continuous_PARA_ss2_n=2000_c=0.6_proposed.Rdata')
-# true.tau <- true_tau2(Zeval)       # true value of tau(z)
-#
-# plot(Zeval, true.tau, ylim = c(-0.4, 1.0),
-#      type = 'l', col = 'black', lwd = 2,
-#      xlab = 'Z', ylab = 'Value of CATE',
-#      main = 'proposed, (C2)')
-# est.tau <- apply(PARA, 2, mean, na.rm = T)
-# up <- apply(PARA, 2, quantile, prob = 0.975, na.rm = T)
-# low <- apply(PARA, 2, quantile, prob = 0.025, na.rm = T)
-# lines(Zeval, est.tau, col = 'red', lwd = 2)
-# lines(Zeval[index], up[index], col = 'blue', lty = 2, lwd = 2)
-# lines(Zeval[index], low[index], col = 'blue', lty = 2, lwd = 2)
-# legend('topright',
-#        legend = c('true value', 'estimate', '95% CI'),
-#        lty = c(1, 1, 2), col = c('black','red','blue'),
-#        lwd = c(2,2, 2), cex = 0.9)
-#
-#
-# load('result/Continuous_PARA_ss3_n=2000_c=0.6_proposed.Rdata')
-# true.tau <- true_tau3(Zeval)       # true value of tau(z)
-#
-# plot(Zeval, true.tau, ylim = c(-0.2, 1.4),
-#      type = 'l', col = 'black', lwd = 2,
-#      xlab = 'Z', ylab = 'Value of CATE',
-#      main = 'proposed, (C3)')
-# est.tau <- apply(PARA, 2, mean, na.rm = T)
-# up <- apply(PARA, 2, quantile, prob = 0.975, na.rm = T)
-# low <- apply(PARA, 2, quantile, prob = 0.025, na.rm = T)
-# lines(Zeval, est.tau, col = 'red', lwd = 2)
-# lines(Zeval[index], up[index], col = 'blue', lty = 2, lwd = 2)
-# lines(Zeval[index], low[index], col = 'blue', lty = 2, lwd = 2)
-# legend('topright',
-#        legend = c('true value', 'estimate', '95% CI'),
-#        lty = c(1, 1, 2), col = c('black','red','blue'),
-#        lwd = c(2,2, 2), cex = 0.9)
 
