@@ -22,13 +22,6 @@ TrueMu1 <- list(true.tau1, true.tau2, true.tau3,
                 true.tau7, true.tau8, true.tau9,
                 true.tau10, true.tau11, true.tau12)
 
-# ------------------------------------------- #
-# case C1: c0 = 0.6 * n^(-1/5)
-# case C2: c0 = 0.65 * n^(-1/5)
-# case C3: c0 = 0.5 * n^(-1/5)
-# 重复跑100次模拟, 平均窗宽约为c0 * n^(-1/5)
-# 最后我们统一使用c0 = 0.6
-# ------------------------------------------- #
 
 set.seed(12)
 for(ss in 10:12){
@@ -133,9 +126,6 @@ for(ss in 10:12){
   save(PARA.psr, file = paste0('result/PARA_ss',ss, '_n=',n,'_psr.Rdata'))
   
   # report some results for z = -0.4, -0.2, 0.0, 0.2, 0.4
-  # RES <- data.frame(matrix(nrow = 5, ncol = 2*1+1))
-  # names(RES) <- c('z', 'psr.bias', 'sd')
-  
   RES <- data.frame(matrix(nrow = 5, ncol = 2*6+1))
   names(RES) <- c('z', 'match.bias','sd', 'match.bc.bias', 'sd',
                   'ipw.bias', 'sd', 'or.bias', 'sd',
